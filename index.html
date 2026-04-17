@@ -3,239 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawan Mahawar | Strategic Generative AI Leader</title>
+    <title>Pawan Mahawar — Principal AI & Analytics</title>
     <meta name="description" content="Strategic Generative AI & AI Transformation Leader showcasing skills, projects, and career journey.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a192f;
+            --bg-secondary: #112240;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --accent-primary: #64ffda;
+            --accent-secondary: #ff9e64;
+            --gradient-1: linear-gradient(135deg, #64ffda 0%, #00d2ff 100%);
+            --gradient-2: linear-gradient(135deg, #ff9e64 0%, #ff5858 100%);
+            --glass-bg: rgba(17, 34, 64, 0.85);
+            --glass-border: rgba(100, 255, 218, 0.12);
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+        }
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-primary: #0ea5e9;
+            --accent-secondary: #f43f5e;
+            --glass-bg: rgba(255,255,255,0.9);
+            --glass-border: rgba(14,165,233,0.15);
+            --gradient-1: linear-gradient(135deg,#0ea5e9 0%,#38bdf8 100%);
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1,h2,h3,h4,.logo { font-family: var(--font-heading); }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Navbar ── */
+        .navbar {
+            position: fixed; top:0; width:100%; z-index:1000;
+            padding: 1.4rem 0;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+        }
+        .nav-container {
+            max-width: 1200px; margin:0 auto;
+            display:flex; justify-content:space-between; align-items:center;
+            padding: 0 2.5rem;
+        }
+        .logo {
+            font-size:1.4rem; font-weight:700;
+            color: var(--accent-primary); letter-spacing:2px;
+        }
+        .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
+        .nav-links a {
+            font-size:0.88rem; font-weight:500; color:var(--text-secondary);
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color:var(--accent-primary); }
+        .nav-links .nav-num { color:var(--accent-primary); margin-right:4px; font-size:0.78rem; }
+        .theme-toggle {
+            background:none; border:none; font-size:1.1rem; cursor:pointer;
+            color:var(--text-primary); padding:5px 8px; border-radius:6px;
+            transition:background 0.3s;
+        }
+        .theme-toggle:hover { background:var(--glass-border); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height:100vh; display:flex; align-items:center;
+            justify-content:space-between; padding:0 10%; gap:4rem;
+        }
+        .hero-content { flex:1; max-width:650px; }
+        .hero-greeting {
+            color:var(--accent-primary); font-family:var(--font-heading);
+            font-size:1rem; margin-bottom:1.2rem; letter-spacing:1px;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem,7vw,4.2rem);
+            line-height:1.1; margin-bottom:1.2rem;
+        }
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        .hero-subtitle {
+            font-size:1.15rem; color:var(--text-secondary);
+            margin-bottom:2.5rem; min-height:1.5em;
+            border-right:2px solid var(--accent-primary);
+            padding-right:5px; width:fit-content;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink {
+            from,to { border-color:transparent }
+            50% { border-color:var(--accent-primary); }
+        }
+        .cta-group { display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; }
+        .btn {
+            padding:0.9rem 2rem; border-radius:5px; font-weight:600;
+            font-size:0.88rem; transition:all 0.3s cubic-bezier(0.645,0.045,0.355,1);
+            font-family:var(--font-heading);
+        }
+        .btn-primary {
+            background:transparent; border:1px solid var(--accent-primary);
+            color:var(--accent-primary);
+        }
+        .btn-primary:hover { background:rgba(100,255,218,0.1); transform:translateY(-4px); }
+        .btn-secondary { color:var(--text-secondary); }
+        .btn-secondary:hover { color:var(--accent-primary); }
+
+        /* Hero visual — photo */
+        .hero-visual { flex:1; display:flex; justify-content:center; align-items:center; }
+        .visual-container { position:relative; width:320px; height:320px; }
+        .hero-photo {
+            width:100%; height:100%; object-fit:cover;
+            border-radius:10px; z-index:2; position:relative;
+            border:2px solid var(--accent-primary);
+            transition:all 0.3s ease;
+            /* Placeholder gradient shown until image loads */
+            background: linear-gradient(135deg, #112240 0%, #1d3461 50%, #112240 100%);
+            display:flex; align-items:center; justify-content:center;
+        }
+        .photo-placeholder {
+            width:100%; height:100%;
+            background: linear-gradient(135deg, #112240 0%, #1a2f4a 100%);
+            border-radius:10px; border:2px solid var(--accent-primary);
+            display:flex; flex-direction:column; align-items:center; justify-content:center;
+            gap:12px; z-index:2; position:relative;
+            transition:all 0.3s ease;
+        }
+        .photo-placeholder svg { width:80px; height:80px; opacity:0.4; }
+        .photo-placeholder p { color:var(--text-secondary); font-size:0.82rem; text-align:center; line-height:1.5; }
+        .visual-container:hover .photo-placeholder { transform:translate(-8px,-8px); }
+        .abstract-shape {
+            position:absolute; top:16px; left:16px;
+            width:100%; height:100%;
+            border:2px solid var(--accent-primary); border-radius:10px; z-index:1;
+            transition:all 0.3s ease; opacity:0.5;
+        }
+        .visual-container:hover .abstract-shape { transform:translate(8px,8px); }
+
+        /* ── Section base ── */
+        section { padding:100px 10%; max-width:1200px; margin:0 auto; }
+        .section-header {
+            display:flex; align-items:center; margin-bottom:50px; gap:16px;
+        }
+        .section-number { color:var(--accent-primary); font-family:var(--font-heading); font-size:1.1rem; }
+        .section-header h2 { font-size:1.9rem; white-space:nowrap; }
+        .section-line { flex:1; height:1px; background:var(--bg-secondary); max-width:280px; }
+
+        /* ── About ── */
+        .about-grid { display:grid; grid-template-columns:3fr 2fr; gap:60px; align-items:start; }
+        .about-text p { margin-bottom:18px; color:var(--text-secondary); font-size:0.98rem; }
+        .about-text p strong { color:var(--text-primary); }
+        .tech-stack-list { display:flex; gap:40px; margin-top:10px; }
+        .tech-stack-list ul { list-style:none; }
+        .tech-stack-list li { font-size:0.88rem; color:var(--text-secondary); padding:4px 0; }
+        .tech-stack-list li::before { content:'▹'; color:var(--accent-primary); margin-right:8px; }
+        .about-stats { display:flex; flex-direction:column; gap:18px; }
+        .stat-card {
+            background:var(--bg-secondary); padding:24px 28px; border-radius:10px;
+            border-left:3px solid var(--accent-primary); transition:transform 0.3s;
+        }
+        .stat-card:hover { transform:translateX(8px); }
+        .stat-number { display:block; font-size:2.2rem; font-weight:700; color:var(--accent-primary); margin-bottom:4px; }
+        .stat-label { color:var(--text-secondary); text-transform:uppercase; font-size:0.72rem; letter-spacing:1.5px; }
+
+        /* ── Experience Timeline ── */
+        .timeline { position:relative; padding-left:28px; }
+        .timeline::before {
+            content:''; position:absolute; left:0; top:0;
+            width:2px; height:100%; background:var(--bg-secondary);
+        }
+        .timeline-item { position:relative; margin-bottom:48px; }
+        .timeline-dot {
+            position:absolute; left:-34px; top:6px;
+            width:12px; height:12px; background:var(--accent-primary);
+            border-radius:50%; box-shadow:0 0 12px var(--accent-primary);
+        }
+        .tl-date { color:var(--accent-primary); font-family:var(--font-heading); font-size:0.82rem; display:block; margin-bottom:4px; }
+        .tl-role { font-size:1.15rem; font-weight:600; margin-bottom:2px; }
+        .tl-company { color:var(--text-secondary); font-size:0.92rem; margin-bottom:12px; font-weight:500; }
+        .tl-desc { color:var(--text-secondary); font-size:0.93rem; line-height:1.7; }
+
+        /* ── Projects ── */
+        .projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+        .project-card {
+            background:var(--bg-secondary); border-radius:14px; overflow:hidden;
+            transition:all 0.3s ease; border:1px solid transparent;
+        }
+        .project-card:hover { transform:translateY(-6px); border-color:var(--glass-border); }
+        .project-banner {
+            height:200px; position:relative; overflow:hidden;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .banner-gradient-1 { background:linear-gradient(135deg,#0a192f 0%,#1d3461 40%,#1e5f74 100%); }
+        .banner-gradient-2 { background:linear-gradient(135deg,#0a192f 0%,#2d1b69 40%,#11998e 100%); }
+        .banner-gradient-3 { background:linear-gradient(135deg,#0a192f 0%,#1a3a5c 40%,#0f6e56 100%); }
+        .banner-icon { font-size:3.5rem; opacity:0.7; }
+        .banner-label {
+            position:absolute; bottom:12px; right:12px;
+            background:rgba(0,0,0,0.5); color:var(--accent-primary);
+            font-family:var(--font-heading); font-size:0.72rem; font-weight:600;
+            padding:4px 10px; border-radius:20px; letter-spacing:1px;
+            border:1px solid var(--glass-border);
+        }
+        .project-info { padding:24px 28px; }
+        .project-info h3 { font-size:1.1rem; margin-bottom:10px; }
+        .project-desc { color:var(--text-secondary); font-size:0.9rem; margin-bottom:18px; line-height:1.65; min-height:60px; }
+        .project-tags { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; }
+        .project-tags span { font-family:var(--font-heading); font-size:0.76rem; color:var(--accent-primary); }
+        .project-links { display:flex; gap:20px; }
+        .project-link {
+            font-size:0.82rem; color:var(--text-secondary); font-weight:500;
+            display:flex; align-items:center; gap:6px; transition:color 0.3s;
+        }
+        .project-link:hover { color:var(--accent-primary); }
+        .project-link svg { width:14px; height:14px; }
+
+        /* ── Skills ── */
+        .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+        .skill-category h3 { margin-bottom:28px; font-size:1.4rem; color:var(--text-primary); }
+        .skill-item { margin-bottom:22px; }
+        .skill-name { display:block; margin-bottom:8px; font-family:var(--font-heading); font-size:0.88rem; color:var(--text-secondary); }
+        .skill-bar { height:3px; background:var(--bg-secondary); border-radius:2px; }
+        .skill-progress {
+            height:100%; border-radius:2px;
+            background: var(--gradient-1);
+            width:0; transition:width 1.4s ease-out;
+        }
+
+        /* ── Education & Certs ── */
+        .edu-cert-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+        .edu-item { margin-bottom:30px; }
+        .edu-item h3 { font-size:1.05rem; margin-bottom:4px; }
+        .edu-item .school { color:var(--accent-primary); font-size:0.9rem; margin-bottom:4px; }
+        .edu-item .years { color:var(--text-secondary); font-size:0.82rem; }
+        .certs-list { display:flex; flex-direction:column; gap:14px; }
+        .cert-item {
+            display:flex; align-items:center; gap:16px;
+            background:var(--bg-secondary); padding:16px 20px;
+            border-radius:8px; transition:background 0.3s;
+        }
+        .cert-item:hover { background:var(--glass-border); }
+        .cert-badge {
+            width:40px; height:40px; border-radius:8px;
+            background:linear-gradient(135deg,var(--accent-primary),#00d2ff);
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.1rem; flex-shrink:0;
+        }
+        .cert-item h4 { font-size:0.93rem; margin-bottom:2px; }
+        .cert-item p { font-size:0.78rem; color:var(--text-secondary); }
+
+        /* ── Footer / Contact ── */
+        footer { padding:120px 10% 50px; text-align:center; max-width:1200px; margin:0 auto; }
+        .footer-content .section-number { font-size:1rem; margin-bottom:16px; display:block; }
+        .footer-content h2 { font-size:clamp(2rem,5vw,3.5rem); margin:16px 0; }
+        .footer-content p { max-width:520px; margin:0 auto 48px; color:var(--text-secondary); line-height:1.75; }
+        .contact-details { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:60px; }
+        .contact-link {
+            display:flex; align-items:center; gap:10px;
+            color:var(--text-secondary); font-size:0.9rem; transition:color 0.3s;
+        }
+        .contact-link:hover { color:var(--accent-primary); }
+        .social-links { display:flex; justify-content:center; gap:36px; margin-bottom:60px; }
+        .social-icon {
+            color:var(--text-secondary); font-family:var(--font-heading);
+            font-size:0.85rem; transition:all 0.3s; display:inline-block;
+        }
+        .social-icon:hover { color:var(--accent-primary); transform:translateY(-3px); }
+        .copyright { font-size:0.78rem; color:var(--text-secondary); opacity:0.5; }
+
+        /* Reveal animations */
+        .reveal { opacity:0; transform:translateY(28px); transition:all 0.8s cubic-bezier(0.645,0.045,0.355,1); }
+        .reveal.active { opacity:1; transform:translateY(0); }
+
+        /* ── Responsive ── */
+        @media (max-width:992px) {
+            .hero { flex-direction:column; text-align:center; padding-top:140px; }
+            .cta-group { justify-content:center; }
+            .about-grid { grid-template-columns:1fr; }
+            .projects-grid { grid-template-columns:1fr; }
+            .skills-grid { grid-template-columns:1fr; gap:50px; }
+            .edu-cert-grid { grid-template-columns:1fr; gap:40px; }
+        }
+        @media (max-width:768px) {
+            .nav-links { display:none; }
+            .hero h1 { font-size:2.2rem; }
+            .visual-container { width:260px; height:260px; }
+            .section-line { display:none; }
+            section { padding:80px 6%; }
+        }
+    </style>
 </head>
-<body class="dark-theme">
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">PAWAN M.</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">🌓</button></li>
-            </ul>
+<body>
+
+<!-- ─────── NAVBAR ─────── -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+
+        <ul class="nav-links">
+            <li><a href="#about"><span class="nav-num">01.</span>About</a></li>
+            <li><a href="#experience"><span class="nav-num">02.</span>Experience</a></li>
+            <li><a href="#projects"><span class="nav-num">03.</span>Projects</a></li>
+            <li><a href="#skills"><span class="nav-num">04.</span>Skills</a></li>
+            <li><a href="#education"><span class="nav-num">05.</span>Education</a></li>
+            <li><a href="#contact"><span class="nav-num">06.</span>Contact</a></li>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌓</button>
+        </ul>
+    </div>
+</nav>
+
+<!-- ─────── HERO ─────── -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="hero-greeting">Hello, I am</p>
+        <h1>Pawan<br><span class="gradient-text">Mahawar</span></h1>
+        <p class="hero-subtitle" id="typewriter">Strategic Generative AI Leader</p>
+        <div class="cta-group">
+            <a href="#projects" class="btn btn-primary">Discover More</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch →</a>
         </div>
-    </nav>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-content">
-                <p class="hero-greeting reveal">Hello, I am</p>
-                <h1 class="reveal">Pawan <span class="gradient-text">Mahawar</span>.</h1>
-                <p class="hero-subtitle reveal">Strategic Generative AI & AI Transformation Leader.</p>
-                <p class="hero-desc reveal" style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px;">
-                    Analytics and Data Science leader with extensive experience building and scaling enterprise machine learning and Generative AI solutions across Pharma and BFSI domains.
-                </p>
-                <div class="cta-group reveal">
-                    <a href="#about" class="btn btn-primary">Discover More</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
+    </div>
+    <div class="hero-visual">
+        <div class="visual-container">
+            <!-- 
+                TO ADD YOUR PHOTO:
+                Replace the .photo-placeholder div below with:
+                <img src="your-photo.jpg" alt="Pawan Mahawar" style="width:100%;height:100%;object-fit:cover;border-radius:10px;border:2px solid var(--accent-primary);z-index:2;position:relative;">
+            -->
+            <div class="photo-placeholder">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="30" r="18" stroke="#64ffda" stroke-width="2"/>
+                    <path d="M10 72c0-16.569 13.431-30 30-30s30 13.431 30 30" stroke="#64ffda" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>Add your photo here<br><span style="font-size:0.72rem;opacity:0.6">Replace placeholder in HTML</span></p>
             </div>
-            <div class="hero-visual reveal">
-                <div class="visual-container">
-                    <img src="avatar.png" alt="Pawan Mahawar" class="hero-img">
-                    <div class="abstract-shape"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="section-header reveal">
-                <span class="section-number">01.</span>
-                <h2>About Me</h2>
-                <div class="line"></div>
-            </div>
-            <div class="about-grid reveal">
-                <div class="about-text">
-                    <p>My work spans building multi-agent orchestration architectures, RAG pipelines with vector memory, LLM-powered planning & decision systems, and secure execution frameworks with guardrails.</p>
-                    <p>I bring strong experience in enterprise-grade LLM evaluation frameworks, including hybrid evaluation approaches using DeepEval, RAGAS, and LLM-as-a-Judge, focused on improving response quality, grounding, and user experience in production agentic AI systems.</p>
-                    <div class="tech-stack-list">
-                        <ul>
-                            <li>GPT-4 / Claude</li>
-                            <li>LangChain / LangGraph</li>
-                            <li>Pinecone / Milvus</li>
-                        </ul>
-                        <ul>
-                            <li>Kubernetes / Docker</li>
-                            <li>Redis</li>
-                            <li>Temporal / OpenTelemetry</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="about-stats-container">
-                    <div class="stat-card reveal">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-card reveal" style="transition-delay: 0.1s;">
-                        <span class="stat-number">20+</span>
-                        <span class="stat-label">Brands Automated</span>
-                    </div>
-                    <div class="stat-card reveal" style="transition-delay: 0.2s;">
-                        <span class="stat-number">₹500Cr+</span>
-                        <span class="stat-label">Revenue Recovery Identified</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Timeline -->
-        <section id="experience" class="experience">
-            <div class="section-header reveal">
-                <span class="section-number">02.</span>
-                <h2>Career Journey</h2>
-                <div class="line"></div>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="date">Dec 2022 - Present</span>
-                        <h3>Principal Heading Analytics for India Business</h3>
-                        <p class="company">Dr. Reddy's Laboratories • Hyderabad, India</p>
-                        <p class="desc">Architected an enterprise Agentic AI platform (LangGraph) for brand diagnostics, integrating sales, pricing, and field-force metrics; identified ₹500+ crore revenue leakages. Designed scalable agent microservices on GCP Cloud Run with LLM-level caching, distributed tracing, and RAGAS-based evaluation frameworks.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="date">Mar 2020 - Dec 2022</span>
-                        <h3>Delivery Head Research and Analytics</h3>
-                        <p class="company">Neustar, Inc. • Hyderabad, India</p>
-                        <p class="desc">Created Marketing Mix Models Unified App using Bayesian Statistics to help clients optimize their budget spend across various media channels. Expanded the Data Science Team by 5X within a year.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="date">Feb 2018 - Mar 2020</span>
-                        <h3>Deputy General Manager Operational Analytics</h3>
-                        <p class="company">Cognizant • Hyderabad Area, India</p>
-                        <p class="desc">Worked on Omni Channel Marketing Strategy for a major Life Insurer. Used deep learning and NLP to solve problems ranging from text classification to complex forecasting. Built Claims Management Solutions enabling significant cost reductions.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="date">Jun 2016 - Jan 2018</span>
-                        <h3>Senior Manager</h3>
-                        <p class="company">Nuevora Analytics Technologies • Hyderabad, India</p>
-                        <p class="desc">Built innovative solutions including a Recommendation Engine for AT&T, a Real-Time Optimization Model for Microsoft, and Customer Churn Models.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="date">Jun 2013 - Oct 2015</span>
-                        <h3>Manager</h3>
-                        <p class="company">American Express</p>
-                        <p class="desc">Worked on customer segmentation, look-alike modeling, and consumer behavior scorecards. Developed dashboards identifying business growth opportunities for the US market.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <div class="section-header reveal">
-                <span class="section-number">03.</span>
-                <h2>Top Skills & Tools</h2>
-                <div class="line"></div>
-            </div>
-            <div class="skills-grid reveal">
-                <div class="skill-category">
-                    <h3>Generative AI & Architecture</h3>
-                    <div class="skill-item"><span class="skill-name">Retrieval-Augmented Generation (RAG)</span><div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></div>
-                    <div class="skill-item"><span class="skill-name">Model Context Protocol (MCP)</span><div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></div>
-                    <div class="skill-item"><span class="skill-name">Google Agent Development Kit (ADK)</span><div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></div>
-                    <div class="skill-item"><span class="skill-name">LangChain / LangGraph</span><div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></div>
-                </div>
-                <div class="skill-category">
-                    <h3>Data Science & Analytics</h3>
-                    <div class="skill-item"><span class="skill-name">Machine Learning / Deep Learning</span><div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></div>
-                    <div class="skill-item"><span class="skill-name">Marketing Mix Modeling (MMM)</span><div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></div>
-                    <div class="skill-item"><span class="skill-name">LLM Evaluation (DeepEval, RAGAS)</span><div class="skill-bar"><div class="skill-progress" style="width: 92%;"></div></div></div>
-                    <div class="skill-item"><span class="skill-name">Vector Databases (Pinecone, Milvus)</span><div class="skill-bar"><div class="skill-progress" style="width: 88%;"></div></div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education & Certifications Section -->
-        <section id="education" class="open-source">
-            <div class="section-header reveal">
-                <span class="section-number">04.</span>
-                <h2>Education & Certifications</h2>
-                <div class="line"></div>
-            </div>
-            <div class="os-grid">
-                <div class="os-card reveal">
-                    <h3>Master of Business Administration (M.B.A.)</h3>
-                    <p>Narsee Monjee Institute of Management Studies</p>
-                    <div class="os-stats">
-                        <span>🎓 2009 - 2011</span>
-                    </div>
-                </div>
-                <div class="os-card reveal" style="transition-delay: 0.1s;">
-                    <h3>B.Tech, Mechanical Engineering</h3>
-                    <p>National Institute of Technology Tiruchirappalli</p>
-                    <div class="os-stats">
-                        <span>🎓 2002 - 2006</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Certifications -->
-            <div class="certs-grid" style="margin-top: 40px;">
-                <div class="cert-item reveal">
-                    <img src="cert1.png" alt="Cert 1" class="cert-logo">
-                    <div class="cert-details">
-                        <h4>Certified Master Black Belt (MBB)</h4>
-                    </div>
-                </div>
-                <div class="cert-item reveal" style="transition-delay: 0.1s;">
-                    <img src="cert1.png" alt="Cert 2" class="cert-logo">
-                    <div class="cert-details">
-                        <h4>AIML Certified</h4>
-                    </div>
-                </div>
-                <div class="cert-item reveal" style="transition-delay: 0.2s;">
-                    <img src="cert1.png" alt="Cert 3" class="cert-logo">
-                    <div class="cert-details">
-                        <h4>US CFA Level 2 Candidate</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer id="contact">
-        <div class="footer-content reveal">
-            <span class="section-number">05. What's Next?</span>
-            <h2>Get In Touch</h2>
-            <p>I am always open to discussing strategic AI transformations, agentic workflows, and new opportunities.</p>
-            <div style="margin-bottom: 30px;">
-                <p style="color: var(--accent-primary);">📞 9971110250</p>
-                <p style="color: var(--accent-primary);">✉️ pawanmahawar123@gmail.com</p>
-            </div>
-            <a href="mailto:pawanmahawar123@gmail.com" class="btn btn-primary contact-btn">Say Hello</a>
-            <div class="social-links">
-                <a href="https://github.com/pawanmahawar2402/" class="social-icon" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/pawan-m-44335015" class="social-icon" target="_blank">LinkedIn</a>
-            </div>
-            <p class="copyright">&copy; 2026 Pawan Mahawar. Crafted with ❤️ using Modern Web Tech</p>
+            <div class="abstract-shape"></div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- ─────── ABOUT ─────── -->
+<section id="about">
+    <div class="section-header reveal">
+        <span class="section-number">01.</span>
+        <h2>About Me</h2>
+        <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+        <div class="about-text reveal">
+            <p>I am <strong>Pawan Mahawar</strong>, Principal Heading Analytics for India Business at <strong>Dr. Reddy's Laboratories</strong>. An Analytics and Data Science leader with extensive experience building and scaling enterprise machine learning and Generative AI solutions across <strong>Pharma and BFSI</strong> domains.</p>
+            <p>My work spans building <strong>multi-agent orchestration architectures</strong>, RAG pipelines with vector memory, LLM-powered planning & decision systems, and secure execution frameworks with guardrails.</p>
+            <p>I bring strong experience in enterprise-grade LLM evaluation frameworks, including hybrid evaluation approaches using <strong>DeepEval, RAGAS, and LLM-as-a-Judge</strong>, focused on improving response quality, grounding, and user experience in production agentic AI systems.</p>
+            <div class="tech-stack-list">
+                <ul>
+                    <li>GPT-4 / Claude</li>
+                    <li>LangChain / LangGraph</li>
+                    <li>Pinecone / Milvus</li>
+                    <li>Google ADK / MCP</li>
+                </ul>
+                <ul>
+                    <li>Kubernetes / Docker</li>
+                    <li>Redis / GCP Cloud Run</li>
+                    <li>Temporal / OpenTelemetry</li>
+                    <li>DeepEval / RAGAS</li>
+                </ul>
+            </div>
+        </div>
+        <div class="about-stats reveal">
+            <div class="stat-card">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">20+</span>
+                <span class="stat-label">Brands Automated</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">₹500Cr+</span>
+                <span class="stat-label">Revenue Recovery Identified</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─────── EXPERIENCE ─────── -->
+<section id="experience">
+    <div class="section-header reveal">
+        <span class="section-number">02.</span>
+        <h2>Career Journey</h2>
+        <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <span class="tl-date">Dec 2022 — Present</span>
+            <div class="tl-role">Principal Heading Analytics for India Business</div>
+            <div class="tl-company">Dr. Reddy's Laboratories · Hyderabad, India</div>
+            <p class="tl-desc">Architected an enterprise Agentic AI platform (LangGraph) for brand diagnostics, integrating sales, pricing, and field-force metrics; identified ₹500+ crore revenue leakages. Designed scalable agent microservices on GCP Cloud Run with LLM-level caching, distributed tracing, and RAGAS-based evaluation frameworks.</p>
+        </div>
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <span class="tl-date">Mar 2020 — Dec 2022</span>
+            <div class="tl-role">Delivery Head — Research and Analytics</div>
+            <div class="tl-company">Neustar, Inc. · Hyderabad, India</div>
+            <p class="tl-desc">Created Marketing Mix Models Unified App using Bayesian Statistics to help clients optimize their budget spend across various media channels. Expanded the Data Science Team by 5X within a year.</p>
+        </div>
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <span class="tl-date">Feb 2018 — Mar 2020</span>
+            <div class="tl-role">Deputy General Manager — Operational Analytics</div>
+            <div class="tl-company">Cognizant · Hyderabad, India</div>
+            <p class="tl-desc">Worked on Omni Channel Marketing Strategy for a major Life Insurer. Used deep learning and NLP to solve problems ranging from text classification to complex forecasting. Built Claims Management Solutions enabling significant cost reductions.</p>
+        </div>
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <span class="tl-date">Jun 2016 — Jan 2018</span>
+            <div class="tl-role">Senior Manager</div>
+            <div class="tl-company">Nuevora Analytics Technologies · Hyderabad, India</div>
+            <p class="tl-desc">Built innovative solutions including a Recommendation Engine for AT&T, a Real-Time Optimization Model for Microsoft, and Customer Churn Models.</p>
+        </div>
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <span class="tl-date">Jun 2013 — Oct 2015</span>
+            <div class="tl-role">Manager</div>
+            <div class="tl-company">American Express</div>
+            <p class="tl-desc">Worked on customer segmentation, look-alike modeling, and consumer behavior scorecards. Developed dashboards identifying business growth opportunities for the US market.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─────── PROJECTS ─────── -->
+<section id="projects">
+    <div class="section-header reveal">
+        <span class="section-number">03.</span>
+        <h2>GitHub Projects</h2>
+        <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+        <!-- Project 1 — Stock Prediction -->
+        <div class="project-card reveal">
+            <div class="project-banner banner-gradient-1">
+                <span class="banner-icon">📈</span>
+                <span class="banner-label">JUPYTER NOTEBOOK</span>
+            </div>
+            <div class="project-info">
+                <h3>Stock Market Prediction</h3>
+                <p class="project-desc">Stock market analytics and prediction notebook exploring time-series forecasting techniques and data-driven approaches to equity market analysis.</p>
+                <div class="project-tags">
+                    <span>Python</span><span>Jupyter</span><span>Time Series</span><span>Machine Learning</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/pawanmahawar2402/Stock_Prediction" target="_blank" class="project-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 — Multi Agent Poetry -->
+        <div class="project-card reveal">
+            <div class="project-banner banner-gradient-2">
+                <span class="banner-icon">🤖</span>
+                <span class="banner-label">PYTHON · MULTI-AGENT</span>
+            </div>
+            <div class="project-info">
+                <h3>Multi-Agent Poetry Agent</h3>
+                <p class="project-desc">A round-robin multi-agent orchestration system demonstrating agentic AI patterns — multiple specialized agents collaborating to generate and refine creative outputs.</p>
+                <div class="project-tags">
+                    <span>Python</span><span>Multi-Agent</span><span>Orchestration</span><span>LLM</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/pawanmahawar2402/MultiAgentPoetryAgent" target="_blank" class="project-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 — Enterprise Agentic AI Platform (work) -->
+        <div class="project-card reveal">
+            <div class="project-banner banner-gradient-3">
+                <span class="banner-icon">🧠</span>
+                <span class="banner-label">LANGGRAPH · GCP</span>
+            </div>
+            <div class="project-info">
+                <h3>Enterprise Agentic AI Platform</h3>
+                <p class="project-desc">LangGraph-based brand diagnostics platform integrating sales, pricing, and field-force metrics. Identified ₹500+ crore revenue leakages across 20+ brands at Dr. Reddy's.</p>
+                <div class="project-tags">
+                    <span>LangGraph</span><span>GCP Cloud Run</span><span>RAGAS</span><span>Agentic AI</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/pawanmahawar2402" target="_blank" class="project-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 — Marketing Mix Models -->
+        <div class="project-card reveal">
+            <div class="project-banner" style="background:linear-gradient(135deg,#0a192f 0%,#1a1a4e 40%,#3d1a78 100%)">
+                <span class="banner-icon">📊</span>
+                <span class="banner-label">BAYESIAN · ANALYTICS</span>
+            </div>
+            <div class="project-info">
+                <h3>Marketing Mix Models (MMM)</h3>
+                <p class="project-desc">Bayesian Statistics-based Marketing Mix Models Unified App helping enterprise clients optimize budget spend across media channels. Built and deployed at Neustar, Inc.</p>
+                <div class="project-tags">
+                    <span>Bayesian Stats</span><span>Python</span><span>Media Analytics</span><span>Optimization</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://www.linkedin.com/in/pawan-m-44335015" target="_blank" class="project-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        See on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ─────── SKILLS ─────── -->
+<section id="skills">
+    <div class="section-header reveal">
+        <span class="section-number">04.</span>
+        <h2>Top Skills &amp; Tools</h2>
+        <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+        <div class="skill-category reveal">
+            <h3>Generative AI &amp; Architecture</h3>
+            <div class="skill-item">
+                <span class="skill-name">Retrieval-Augmented Generation (RAG)</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Model Context Protocol (MCP)</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">LangChain / LangGraph</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="92"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Google Agent Development Kit (ADK)</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Multi-Agent Orchestration</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+            </div>
+        </div>
+        <div class="skill-category reveal">
+            <h3>Data Science &amp; Analytics</h3>
+            <div class="skill-item">
+                <span class="skill-name">Machine Learning / Deep Learning</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="93"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Marketing Mix Modeling (MMM)</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">LLM Evaluation (DeepEval, RAGAS)</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Vector Databases (Pinecone, Milvus)</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Bayesian Statistics</span>
+                <div class="skill-bar"><div class="skill-progress" data-width="87"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─────── EDUCATION & CERTS ─────── -->
+<section id="education">
+    <div class="section-header reveal">
+        <span class="section-number">05.</span>
+        <h2>Education &amp; Certifications</h2>
+        <div class="section-line"></div>
+    </div>
+    <div class="edu-cert-grid">
+        <div class="reveal">
+            <h3 style="margin-bottom:28px;font-size:1.3rem;">Academic</h3>
+            <div class="edu-item">
+                <h3>Master of Business Administration (M.B.A.)</h3>
+                <div class="school">Narsee Monjee Institute of Management Studies</div>
+                <div class="years">🎓 2009 – 2011</div>
+            </div>
+            <div class="edu-item">
+                <h3>B.Tech, Mechanical Engineering</h3>
+                <div class="school">National Institute of Technology Tiruchirappalli</div>
+                <div class="years">🎓 2002 – 2006</div>
+            </div>
+        </div>
+        <div class="reveal">
+            <h3 style="margin-bottom:28px;font-size:1.3rem;">Certifications</h3>
+            <div class="certs-list">
+                <div class="cert-item">
+                    <div class="cert-badge">🏆</div>
+                    <div><h4>Certified Master Black Belt (MBB)</h4><p>Six Sigma · Process Excellence</p></div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-badge">🤖</div>
+                    <div><h4>AIML Certified</h4><p>Artificial Intelligence & Machine Learning</p></div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-badge">📈</div>
+                    <div><h4>US CFA Level 2 Candidate</h4><p>CFA Institute · Financial Analysis</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─────── CONTACT / FOOTER ─────── -->
+<footer id="contact">
+    <div class="footer-content reveal">
+        <span class="section-number">06. What's Next?</span>
+        <h2>Get In <span class="gradient-text">Touch</span></h2>
+        <p>I am always open to discussing strategic AI transformations, agentic workflows, and new opportunities in enterprise AI.</p>
+        <div class="contact-details">
+            <a href="tel:9971110250" class="contact-link">📞 9971110250</a>
+            <a href="mailto:pawanmahawar123@gmail.com" class="contact-link">✉️ pawanmahawar123@gmail.com</a>
+        </div>
+        <a href="mailto:pawanmahawar123@gmail.com" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.8rem;">Say Hello</a>
+    </div>
+    <div class="social-links reveal">
+        <a href="https://github.com/pawanmahawar2402" target="_blank" class="social-icon">GitHub</a>
+        <a href="https://www.linkedin.com/in/pawan-m-44335015" target="_blank" class="social-icon">LinkedIn</a>
+        <a href="mailto:pawanmahawar123@gmail.com" class="social-icon">Email</a>
+    </div>
+    <p class="copyright">© 2026 Pawan Mahawar. Crafted with ❤️ using Modern Web Tech</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '🌓' : '☀️';
+    themeToggle.addEventListener('click', () => {
+        const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        body.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeToggle.textContent = next === 'dark' ? '🌓' : '☀️';
+    });
+
+    // Reveal on scroll
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('active'); revealObs.unobserve(e.target); }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Skill bars animate on scroll
+    const barObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelectorAll('.skill-progress').forEach(bar => {
+                    bar.style.width = bar.dataset.width + '%';
+                });
+                barObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.skill-category').forEach(cat => barObs.observe(cat));
+
+    // Typewriter
+    const el = document.getElementById('typewriter');
+    const roles = ["Strategic Generative AI Leader", "AI Transformation Leader", "Analytics & Data Science Leader", "Agentic AI Architect"];
+    let ri=0, ci=0, del=false, speed=100;
+    function type() {
+        const cur = roles[ri];
+        el.textContent = del ? cur.substring(0, ci-1) : cur.substring(0, ci+1);
+        del ? ci-- : ci++;
+        speed = del ? 50 : 100;
+        if (!del && ci === cur.length) { del=true; speed=2200; }
+        else if (del && ci === 0) { del=false; ri=(ri+1)%roles.length; speed=500; }
+        setTimeout(type, speed);
+    }
+    type();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href');
+            if (id === '#') return;
+            e.preventDefault();
+            const target = document.querySelector(id);
+            if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        });
+    });
+});
+</script>
 </body>
 </html>
