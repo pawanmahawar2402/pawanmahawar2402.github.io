@@ -1,103 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Navbar Scroll Effect
+
+    // Navbar scroll
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // 2. Theme Toggle
+    // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-
-    // Check for saved theme
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     themeToggle.textContent = savedTheme === 'dark' ? '🌓' : '☀️';
-
     themeToggle.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        themeToggle.textContent = newTheme === 'dark' ? '🌓' : '☀️';
+        const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        body.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeToggle.textContent = next === 'dark' ? '🌓' : '☀️';
     });
 
-    // 3. Reveal Animations on Scroll
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    const revealOnScroll = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Stop observing after animation
-            }
+    // Reveal on scroll
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('active'); revealObs.unobserve(e.target); }
         });
-    }, {
-        threshold: 0.15
-    });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    revealElements.forEach(el => revealOnScroll.observe(el));
-
-    // 4. Typewriter Effect
-    const typewriterElement = document.querySelector('.hero-subtitle');
-    const roles = ["Strategic Generative AI Leader", "AI Transformation Leader", "Analytics and Data Science Leader"];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 100;
-
-    function type() {
-        const currentRole = roles[roleIndex];
-        
-        if (isDeleting) {
-            typewriterElement.textContent = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-            typeSpeed = 50;
-        } else {
-            typewriterElement.textContent = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-            typeSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentRole.length) {
-            isDeleting = true;
-            typeSpeed = 2000; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typeSpeed = 500;
-        }
-
-        setTimeout(type, typeSpeed);
-    }
-    
-    // Start typewriter if element exists
-    if (typewriterElement) type();
-
-    // 5. Smooth Scrolling for Nav Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Offset for navbar
-                    behavior: 'smooth'
+    // Skill bars animate on scroll
+    const barObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelectorAll('.skill-progress').forEach(bar => {
+                    bar.style.width = bar.dataset.width + '%';
                 });
+                barObs.unobserve(e.target);
             }
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.skill-category').forEach(cat => barObs.observe(cat));
+
+    // Typewriter
+    const el = document.getElementById('typewriter');
+    const roles = [
+        "Strategic Generative AI Leader",
+        "AI Transformation Leader",
+        "Analytics & Data Science Leader",
+        "Agentic AI Architect"
+    ];
+    let ri = 0, ci = 0, del = false, speed = 100;
+    function type() {
+        const cur = roles[ri];
+        el.textContent = del ? cur.substring(0, ci - 1) : cur.substring(0, ci + 1);
+        del ? ci-- : ci++;
+        speed = del ? 50 : 100;
+        if (!del && ci === cur.length) { del = true; speed = 2200; }
+        else if (del && ci === 0) { del = false; ri = (ri + 1) % roles.length; speed = 500; }
+        setTimeout(type, speed);
+    }
+    type();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href');
+            if (id === '#') return;
+            e.preventDefault();
+            const target = document.querySelector(id);
+            if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
         });
     });
 
-    // 5. Dynamic Year for Footer (optional but good)
-    const yearSpan = document.createElement('span');
-    yearSpan.textContent = new Date().getFullYear();
-    // Logic to replace placeholder if needed
 });
